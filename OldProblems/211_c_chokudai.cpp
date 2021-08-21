@@ -5,11 +5,34 @@
 
 
 int main(){
-    pll pairT;
-    cin >> pairT.F >> pairT.S;
-    REP(i, 3){
-        cout << pairT.S << ", " << pairT.F;
+    string st;
+    string sample = "chokudai";
+    cin >> st;
+    //cout << st << "\n";
+    long** table = new long*[st.size()+1];
+
+    REP(i, (st.size()+1)){
+        table[i] = new long[sample.size() + 1];
+        FOR(j, 1, sample.size()) table[i][j] = 0;
+        table[i][0] = 1;
     }
+    
+    FOR(i, 1, st.size()){
+        FOR(j, 1, sample.size()){
+            if(st[i-1] == sample[j-1]){
+                table[i][j] = (table[i-1][j-1] + table[i-1][j]) % mod;
+            }else{
+                table[i][j] = table[i-1][j];
+            }
+        }
+    }
+    cout << table[st.size()][8] << "\n";
+    REP(i, sizeof(table)){
+        delete[] table[i];
+        table[i] = 0;
+    }
+    delete[] table;
+    table = 0;
 }
 
 #else //INCLUDED_MAIN
@@ -18,6 +41,9 @@ int main(){
 
 #include <bits/stdc++.h>
 using namespace std;
+
+
+
 
 //総数を素数で割ったあまり
 const long long mod = 1e9 + 7;
@@ -51,5 +77,6 @@ using pllg = pair<llg, llg>;
 //aをbで割る時の繰上げ,繰り下げ
 llg myceil(llg a,llg b){return (a+(b-1))/b;}
 llg myfloor(llg a,llg b){return a/b;}
+
 
 #endif // INCLUDED_MAIN
