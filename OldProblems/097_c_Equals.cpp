@@ -1,0 +1,97 @@
+#ifndef INCLUDED_MAIN
+#define INCLUDED_MAIN
+
+#include __FILE__
+
+//Union-Find木struct
+struct UnionFind{
+    vector<int> par; //自分の親を保存する配列
+
+    UnionFind(int n) : par(n){ //0 ~ N-1までの要素を自分を根にして初期化
+        REP(i, n) par[i] = i;
+    }
+
+    int root(int x){ //根の値を確かめる関数
+        if(par[x] == x)return x;
+        else{
+            par[x] = root(par[x]);
+            return par[x];
+        }
+    }
+
+    void unite(int x, int y){
+        int rx = root(x);
+        int ry = root(y);
+        if(rx == ry) return; //rootが同じなら何もしない
+        par[rx] = ry; //xの根をyの根に付ける
+    }
+
+    bool same(int x, int y){ // xとyが同じ木にいるか確かめる関数
+        return root(par[x]) == root(par[y]);
+    }
+};
+
+int main(){
+    int N, M, tmp, x, y;
+    int *p;
+    cin >> N >> M;
+    UnionFind uf(N);
+    p = new int[N];
+    REP(i, N){
+        cin >> tmp;
+        p[i] = tmp;
+    }
+
+    REP(i, M){
+        cin >> x >> y;
+        uf.unite(x-1, y-1);
+    }
+    int count = 0;
+    REP(i, N){
+        if(uf.same(p[i] - 1, i))count++;
+    }
+    cout << count << endl;
+    delete[] p;
+}
+
+#else //INCLUDED_MAIN
+
+//templete
+
+#include <bits/stdc++.h>
+using namespace std;
+
+//総数を素数で割ったあまり
+const long long mod = 1e9 + 7;
+
+using llg = long long;
+using pll = pair<long, long>;
+using pllg = pair<llg, llg>;
+
+//イテレーション
+#define REP(i,n) for(llg i=0;i<llg(n);i++)
+#define REPD(i,n) for(llg i=n-1;i>=0;i--)
+#define FOR(i,a,b) for(llg i=a;i<=llg(b);i++)
+#define FORD(i,a,b) for(llg i=a;i>=llg(b);i--)
+#define FORA(i,I) for(const auto& i:I)
+
+//x:コンテナ
+#define ALL(x) x.begin(),x.end() 
+#define SIZE(x) llg(x.size()) 
+//定数
+#define INF32 2147483647 //2.147483647×10^{9}:32bit整数のinf
+#define INF64 9223372036854775807 //9.223372036854775807×10^{18}:64bit整数のinf
+#define MOD 1000000007 //問題による
+
+//略記
+#define F first
+#define S second
+
+//出力(空白区切りで昇順に)
+#define coutALL(x) for(auto i=x.begin();i!=--x.end();i++)cout<<*i<<" ";cout<<*--x.end()<<endl;
+
+//aをbで割る時の繰上げ,繰り下げ
+llg myceil(llg a,llg b){return (a+(b-1))/b;}
+llg myfloor(llg a,llg b){return a/b;}
+
+#endif // INCLUDED_MAIN
