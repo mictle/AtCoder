@@ -32,10 +32,10 @@ int main(){
         cin >> tmp;
         auto itr = mp.find(tmp);
         if(itr != mp.end()){
+            mp[tmp]++;
+        }else{
             mp[tmp] = 1;
             nowVal++;
-        }else{
-            mp[tmp]++;
         }
         if(maxVal < nowVal) maxVal = nowVal;
         q1.push(tmp);
