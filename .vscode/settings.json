@@ -1,6 +1,15 @@
 {
     "files.associations": {
         "xstring": "cpp",
-        "xtree": "cpp"
+        "xtree": "cpp",
+        "iostream": "cpp",
+        "functional": "cpp",
+        "optional": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp",
+        "xlocmon": "cpp",
+        "xlocnum": "cpp",
+        "xtr1common": "cpp",
+        "stack": "cpp"
     }
 }
