@@ -3,68 +3,17 @@
 
 #include __FILE__
 
-llg kaijou(llg n){
-    llg result=1;
-    if(n==0)return 1;
-    FOR(i, 2, n) result *= i;
-    return result;
-}
+
 
 int main(){
-    string st, ans;
-    llg k;
-    pair<char, int> l1[8];
-    REP(i, st.length()){
-        l1[8].F = '0';
-        l1[8].S = 0;
-    } 
-    char tmp;
-    cin >> st >> k;
-    int wordn=0;
-    REP(i, st.length()){
-        int flg = -1;
-        REP(j, 8) if(l1[j].F == st[i])flg = j;
-        if(flg != -1) l1[flg].S++;
-        else REP(j, 8){
-            if(l1[j].F == '0'){
-                l1[j].F = st[i];
-                l1[j].S = 1;
-                wordn++;
-                break;
-            }
-        }
-        
+    string s;
+    int k;
+    cin >> s >> k;
+    sort(s.begin(), s.end());
+    REP(i, k-1){
+        next_permutation(s.begin(), s.end());
     }
-    int oldp=0;
-    sort(l1, l1+wordn);
-    llg pattern = 0;
-    FOR(i, 0, wordn-2){
-        pattern = oldp;
-        int m=0;
-        
-        while(pattern<k){
-            if(l1[m].S==0){
-                m++;
-                continue;
-            }
-            llg tmp =0, tmp2 = 1;
-            REP(j, wordn) tmp +=l1[m].S;
-            tmp -=l1[m].S;
-            REP(j, wordn) tmp2 = tmp2 * kaijou(l1[j].S);
-            tmp2 /= l1[m].S;
-            oldp = pattern;
-            pattern += tmp / tmp2;
-            m++;
-        }
-        l1[m-1].S--;
-        ans += l1[m-1].F;
-    }
-    int m=0;
-    while(m < k-oldp){
-        if(l1[m].S!=0)m++;
-    }
-    ans+=l1[m].F;
-    cout << ans;
+    cout << s << endl;
 }
 
 
