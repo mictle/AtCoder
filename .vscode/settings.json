@@ -10,6 +10,8 @@
         "xlocmon": "cpp",
         "xlocnum": "cpp",
         "xtr1common": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "utility": "cpp",
+        "cstdlib": "cpp"
     }
 }
