@@ -8,16 +8,22 @@ using namespace std;
 
 
 int main(){
-    float tmp;
-    int tmp2;
-    int x,y;
-    cin >> tmp;
-    tmp2 = (int)(tmp * 10);
-    x = tmp2 / 10;
-    y = tmp2 % 10;
-    if(y<=2) cout << x << "-" << endl;
-    else if(y<=6) cout << x << endl;
-    else cout << x << "+" << endl;
+    int max = 1000000;
+    int count = 0;
+    FOR(i, 1111, max){
+        llg count2 = 1;
+        int tmp = i;
+        while(true){
+            string tmpS = to_string(tmp);
+            tmp = 1;
+            REP(j, tmpS.size()) tmp *= (tmpS[j] - '0');
+            if(tmp/10 == 0)break;
+            count2++;
+            if(count2 >= 8) break;
+        }
+        if(count2==7) count++;
+    }
+    cout << count;
 }
 
 #else //INCLUDED_MAIN

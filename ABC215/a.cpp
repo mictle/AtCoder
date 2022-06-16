@@ -1,3 +1,6 @@
+#include <bits/stdc++.h>
+using namespace std;
+
 #ifndef INCLUDED_MAIN
 #define INCLUDED_MAIN
 

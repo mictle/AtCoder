@@ -8,15 +8,10 @@ using namespace std;
 
 
 int main(){
-    float tmp;
-    int tmp2;
-    int x,y;
-    cin >> tmp;
-    tmp2 = (int)(tmp * 10);
-    x = tmp2 / 10;
-    y = tmp2 % 10;
-    if(y<=2) cout << x << "-" << endl;
-    else if(y<=6) cout << x << endl;
+    double total = 0;
+    int num = 1;
+
+    while
     else cout << x << "+" << endl;
 }
 

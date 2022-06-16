@@ -8,16 +8,26 @@ using namespace std;
 
 
 int main(){
-    float tmp;
-    int tmp2;
-    int x,y;
-    cin >> tmp;
-    tmp2 = (int)(tmp * 10);
-    x = tmp2 / 10;
-    y = tmp2 % 10;
-    if(y<=2) cout << x << "-" << endl;
-    else if(y<=6) cout << x << endl;
-    else cout << x << "+" << endl;
+    int max = 50000;
+    llg total = 0;
+    FOR(i,1, 50000){
+        if(i%3 == 0){
+            total += i;
+        }else{
+            int tmp = 10000;
+            int tmp2 = i;
+            while(true){
+                if(tmp2 / tmp == 3){
+                    total += i;
+                    break;
+                }
+                tmp2 %= tmp;
+                if(tmp == 1) break;
+                tmp /= 10;
+            }
+        }
+    }
+    cout << total;
 }
 
 #else //INCLUDED_MAIN
