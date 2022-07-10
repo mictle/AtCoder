@@ -8,16 +8,27 @@ using namespace std;
 
 
 int main(){
-    float tmp;
-    int tmp2;
-    int x,y;
+    int tmp1 = 20;
+    int tmp2 = 30;
+    int tmp3 = 40;
+    20*30*40
+    int *nums = new int[100];
+    REP(i,100) nums[i] = 0;
+    string tmp;
     cin >> tmp;
-    tmp2 = (int)(tmp * 10);
-    x = tmp2 / 10;
-    y = tmp2 % 10;
-    if(y<=2) cout << x << "-" << endl;
-    else if(y<=6) cout << x << endl;
-    else cout << x << "+" << endl;
+    REP(i, tmp.size()-1){
+        int num = (tmp[i] - '0') * 10 + tmp[i+1] - '0';
+        nums[num]++;
+    }
+    int max = 0;
+    int maxn = 0;
+    REP(i,100){
+        if(nums[i] > max){
+            max = nums[i];
+            maxn = i;
+        }
+    }
+    cout << maxn;
 }
 
 #else //INCLUDED_MAIN

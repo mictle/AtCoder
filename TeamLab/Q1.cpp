@@ -8,17 +8,22 @@ using namespace std;
 
 
 int main(){
-    float tmp;
-    int tmp2;
-    int x,y;
-    cin >> tmp;
-    tmp2 = (int)(tmp * 10);
-    x = tmp2 / 10;
-    y = tmp2 % 10;
-    if(y<=2) cout << x << "-" << endl;
-    else if(y<=6) cout << x << endl;
-    else cout << x << "+" << endl;
+     llg num = 1234567890;
+    // llg max = 30000000;
+     llg total = 0;
+     int a, b;
+    // FOR(i,1,max){
+    //     if(num%i == 0) total += i;
+    // }
+    cin >> a >> b;
+    cout << a << "AND" << endl << b;
+    
+    
 }
+/*
+int **test = new int*[2];
+REP(i, 3)test[i] = new int[2];
+*/
 
 #else //INCLUDED_MAIN
 
