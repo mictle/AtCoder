@@ -5,46 +5,23 @@
 
 
 int main(){
-    int sn, tn;
-    string s,t,sOld, tOld;
-
-    sOld = "123";
-    tOld = "123";
-
-    cin >> s >> t;
-
-    sOld[0] = s[0];
-    tOld[0] = t[0];
-    sn=0;
-    tn=0;
-    while(sn<s.length() || tn < t.length()){
-        if(tn >= t.length()){
-            cout <<"No";
-            return 0;
-        }
-        if(sOld[0] == tOld[0]){
-            sn++;
-            tn++;
-            FORD(i,2,1) sOld[i] = sOld[i-1];
-            sOld[0] = s[sn];
-            FORD(i,2,1) tOld[i] = tOld[i-1];
-            tOld[0] = t[tn];
-        }else if(sOld[1] == sOld[2] && sOld[1] == tOld[0]){
-            tn++;
-            FORD(i,2,1) tOld[i] = tOld[i-1];
-            tOld[0] = t[tn];
-        }else{
-            cout <<"No";
-            return 0;
-        }
+    int n;
+    string str;
+    cin >> n;
+  	int **s = new int*[n];
+    int **t = new int*[n];
+    REP(i, n)s[i] = new int[n];
+    REP(i, n)t[i] = new int[n];
+    REP(i, n){
+        cin >> str;
+        REP(j, n)s[i][j] = str[j];
     }
-    if(tn < t.length()){
-
-            cout <<"No";
-            return 0;
+    REP(i, n){
+        cin >> str;
+        REP(j, n)t[i][j] = str[j];
     }
-    cout << "Yes";
-    return 0;
+    
+    cout << endl;
 }
 
 #else //INCLUDED_MAIN

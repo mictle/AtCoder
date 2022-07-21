@@ -5,45 +5,22 @@
 
 
 int main(){
-    int sn, tn;
-    string s,t,sOld, tOld;
-
-    sOld = "123";
-    tOld = "123";
-
-    cin >> s >> t;
-
-    sOld[0] = s[0];
-    tOld[0] = t[0];
-    sn=0;
-    tn=0;
-    while(sn<s.length() || tn < t.length()){
-        if(tn >= t.length()){
-            cout <<"No";
-            return 0;
-        }
-        if(sOld[0] == tOld[0]){
-            sn++;
-            tn++;
-            FORD(i,2,1) sOld[i] = sOld[i-1];
-            sOld[0] = s[sn];
-            FORD(i,2,1) tOld[i] = tOld[i-1];
-            tOld[0] = t[tn];
-        }else if(sOld[1] == sOld[2] && sOld[1] == tOld[0]){
-            tn++;
-            FORD(i,2,1) tOld[i] = tOld[i-1];
-            tOld[0] = t[tn];
-        }else{
-            cout <<"No";
-            return 0;
-        }
+    string s;
+    cin >> s;
+    if(s[0] != s[1] && s[0] != s[2]){
+        cout << s[0];
+        return 0;
     }
-    if(tn < t.length()){
-
-            cout <<"No";
-            return 0;
+    if(s[1] != s[0] && s[1] != s[2]){
+        cout << s[1];
+        return 0;
     }
-    cout << "Yes";
+
+    if(s[2] != s[0] && s[2] != s[1]){
+        cout << s[2];
+        return 0;
+    }
+    cout << "-1";
     return 0;
 }
 

@@ -5,46 +5,12 @@
 
 
 int main(){
-    int sn, tn;
-    string s,t,sOld, tOld;
-
-    sOld = "123";
-    tOld = "123";
-
-    cin >> s >> t;
-
-    sOld[0] = s[0];
-    tOld[0] = t[0];
-    sn=0;
-    tn=0;
-    while(sn<s.length() || tn < t.length()){
-        if(tn >= t.length()){
-            cout <<"No";
-            return 0;
-        }
-        if(sOld[0] == tOld[0]){
-            sn++;
-            tn++;
-            FORD(i,2,1) sOld[i] = sOld[i-1];
-            sOld[0] = s[sn];
-            FORD(i,2,1) tOld[i] = tOld[i-1];
-            tOld[0] = t[tn];
-        }else if(sOld[1] == sOld[2] && sOld[1] == tOld[0]){
-            tn++;
-            FORD(i,2,1) tOld[i] = tOld[i-1];
-            tOld[0] = t[tn];
-        }else{
-            cout <<"No";
-            return 0;
-        }
-    }
-    if(tn < t.length()){
-
-            cout <<"No";
-            return 0;
-    }
-    cout << "Yes";
-    return 0;
+    int n,m,x,t,d;
+    int zeroL;
+    cin >> n >> m >> x >> t >> d;
+    zeroL = (t - d * x);
+    if(m<=x) cout << (zeroL + d*m);
+    else cout << t;
 }
 
 #else //INCLUDED_MAIN
@@ -86,5 +52,33 @@ using pllg = pair<llg, llg>;
 //aをbで割る時の繰上げ,繰り下げ
 llg myceil(llg a,llg b){return (a+(b-1))/b;}
 llg myfloor(llg a,llg b){return a/b;}
+
+//Union-Find木struct
+struct UnionFind{
+    vector<int> par; //自分の親を保存する配列
+
+    UnionFind(int n) : par(n){ //0 ~ N-1までの要素を自分を根にして初期化
+        REP(i, n) par[i] = i;
+    }
+
+    int root(int x){ //根の値を確かめる関数
+        if(par[x] == x)return x;
+        else{
+            par[x] = root(par[x]);
+            return par[x];
+        }
+    }
+
+    void unite(int x, int y){
+        int rx = root(x);
+        int ry = root(y);
+        if(rx == ry) return; //rootが同じなら何もしない
+        par[rx] = ry; //xの根をyの根に付ける
+    }
+
+    bool same(int x, int y){ // xとyが同じ木にいるか確かめる関数
+        return root(par[x]) == root(par[y]);
+    }
+};
 
 #endif // INCLUDED_MAIN

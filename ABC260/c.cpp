@@ -5,47 +5,37 @@
 
 
 int main(){
-    int sn, tn;
-    string s,t,sOld, tOld;
+    int n,x,y;
+    cin >> n >> x >> y;
 
-    sOld = "123";
-    tOld = "123";
-
-    cin >> s >> t;
-
-    sOld[0] = s[0];
-    tOld[0] = t[0];
-    sn=0;
-    tn=0;
-    while(sn<s.length() || tn < t.length()){
-        if(tn >= t.length()){
-            cout <<"No";
-            return 0;
+    llg* bnum = new llg[n];
+    llg* rnum = new llg[n];
+    REP(i,n) bnum[i] = 0;
+    REP(i,n) rnum[i] = 0;
+    rnum[n-1] = 1;
+    while(true){
+        bool flg = false;
+        FOR(i, 1, n-1){
+            if(rnum[i] > 0){
+                flg = true;
+                rnum[i-1]+= rnum[i];
+                bnum[i] += rnum[i] * x;
+                rnum[i] = 0;
+            }
+            if(bnum[i] > 0){
+                flg = true;
+                rnum[i-1]+= bnum[i];
+                bnum[i-1] += bnum[i] * y;
+                bnum[i] = 0;
+            }
         }
-        if(sOld[0] == tOld[0]){
-            sn++;
-            tn++;
-            FORD(i,2,1) sOld[i] = sOld[i-1];
-            sOld[0] = s[sn];
-            FORD(i,2,1) tOld[i] = tOld[i-1];
-            tOld[0] = t[tn];
-        }else if(sOld[1] == sOld[2] && sOld[1] == tOld[0]){
-            tn++;
-            FORD(i,2,1) tOld[i] = tOld[i-1];
-            tOld[0] = t[tn];
-        }else{
-            cout <<"No";
-            return 0;
-        }
+        if(!flg) break;
     }
-    if(tn < t.length()){
-
-            cout <<"No";
-            return 0;
-    }
-    cout << "Yes";
+    cout << bnum[0];
     return 0;
 }
+
+
 
 #else //INCLUDED_MAIN
 
